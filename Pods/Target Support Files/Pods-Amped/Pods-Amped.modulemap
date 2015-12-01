@@ -1,0 +1,6 @@
+framework module Pods_Amped {
+  umbrella header "Pods-Amped-umbrella.h"
+
+  export *
+  module * { export * }
+}
