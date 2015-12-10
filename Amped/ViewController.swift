@@ -2,22 +2,38 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
+import UIKit
+import MapKit
+import CoreLocation
 
 
 class ViewController: UIViewController {
     
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    let locationManager = CLLocationManager()
     
     var stories = [Story]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadData()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "downloadData:", name: "Hit Location", object: nil)
+
     }
 
-    func downloadData() {
-        Alamofire.request(.GET, "http://kylegoslan.co.uk/name.json")
+    func downloadData(notification: NSNotification) {
+        
+        let file = notification.object as! String
+        
+        Alamofire.request(.GET, "http://kylegoslan.co.uk/" + file)
             .response { request, response, data, error in
                 
                 if let data = data {
@@ -25,6 +41,7 @@ class ViewController: UIViewController {
                     
                     for story in json {
                         let newStory = Story(json: story.1)
+                        self.stories.removeAll()
                         self.stories.append(newStory)
                     }
                     
@@ -64,4 +81,9 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
+extension ViewController: CLLocationManagerDelegate {
+    
+    
+    
+}
 
