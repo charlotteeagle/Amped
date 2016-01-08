@@ -2,27 +2,8 @@
 
 	{
 		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "userName": "Kyle",
-        "image": "crownIcon",
-        "date": 111
-	},
-	{
-		"text": "This is the note for Bournemouth Pier...",
-        "userName": "Bournemouth Pier",
-        "image": "crownIcon",
-        "date": 111
-	},
-	{
-		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "userName": "Boscombe Pier",
-        "image": "crownIcon",
-        "date": 111
-	},
-	{
-		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "userName": "Kyle",
+        "userName": "Gardens",
         "image": "crownIcon",
         "date": 111
 	}
-
 ]
