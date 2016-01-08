@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         
         let file = notification.object as! String
         
-        Alamofire.request(.GET, "http://kylegoslan.co.uk/" + file)
+        Alamofire.request(.GET, "https://raw.githubusercontent.com/charlotteeagle/Amped/master/" + file)
             .response { request, response, data, error in
                 
                 if let data = data {
@@ -69,6 +69,8 @@ extension ViewController: UITableViewDataSource {
         
         let textLabel = cell?.viewWithTag(1) as! UILabel
         textLabel.text = story.text
+        
+        cell?.backgroundColor = story.color
         
         return cell!
     }
