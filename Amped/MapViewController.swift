@@ -53,8 +53,9 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
 
     }
-    
 }
+
+
 
 
 extension MapViewController: MKMapViewDelegate {
@@ -70,17 +71,7 @@ extension MapViewController: MKMapViewDelegate {
             UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
                 self.fillImage.transform = CGAffineTransformMakeScale(CGFloat(distance/1000), CGFloat(distance/1000))
             }) { _ in }
-        } else if { let location = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let distance = location.distanceFromLocation(CLLocation(latitude: 50.719914, longitude: -1.843552))
-        
-        
-        if distance < 1000 {
-            print(distance/1000)
-            UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
-                self.fillImage.transform = CGAffineTransformMakeScale(CGFloat(distance/1000), CGFloat(distance/1000))
-                }) { _ in }
         }
-
         
         
 //        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
