@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -63,6 +65,9 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
         
         let story = stories[indexPath.row]
+        
+        let imageView = cell?.viewWithTag(4) as! UIImageView
+        imageView.image = UIImage(named: "ring")
         
         let titleLabel = cell?.viewWithTag(2) as! UILabel
         titleLabel.text = story.username

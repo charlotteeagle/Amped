@@ -7,6 +7,7 @@ import SwiftyJSON
 class MapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
+    var locations = [CustomLocation]()
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -19,17 +20,17 @@ class MapViewController: UIViewController {
         mapView.setUserTrackingMode(.Follow, animated: true)
         
         
-        let bournemouthPier = CLLocationCoordinate2D(latitude: 50.716098, longitude: -1.875780)
-        let bournemouthPierRegion = CLCircularRegion(center: bournemouthPier, radius: 50, identifier: "bournemouthpier.json")
-        locationManager.startMonitoringForRegion(bournemouthPierRegion)
-
-        let gardens = CLLocationCoordinate2D(latitude: 50.719799, longitude: -1.879439)
-        let gardensRegion = CLCircularRegion(center: gardens, radius: 50, identifier: "gardens.json")
-        locationManager.startMonitoringForRegion(gardensRegion)
+        let bournemouth = CustomLocation(lat: 50.716098, long: -1.875780, identifier: "bournemouthpier.json")
+        locations.append(bournemouth)
+        let gardens = CustomLocation(lat: 50.719799, long: -1.879439, identifier: "gardens.json")
+        locations.append(gardens)
+        let boscombePier = CustomLocation(lat: 50.719914, long: -1.843552, identifier: "boscombepier.json")
+        locations.append(boscombePier)
         
-        let boscombePier = CLLocationCoordinate2D(latitude: 50.719914, longitude: -1.843552)
-        let boscombePierRegion = CLCircularRegion(center: boscombePier, radius: 50, identifier: "boscombepier.json")
-        locationManager.startMonitoringForRegion(boscombePierRegion)
+        
+        for location in locations {
+            locationManager.startMonitoringForRegion(location.region)
+        }
         
     }
     
@@ -62,12 +63,18 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         
-        let location = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let distance = location.distanceFromLocation(CLLocation(latitude: 50.719914, longitude: -1.843552))
+        let newLocation = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         
+        for location in locations {
+            location.distanceFromUser = location.location.distanceFromLocation(newLocation)
+            print(location.distanceFromUser)
+        }
+        
+        locations.sortInPlace({return $0.distanceFromUser < $1.distanceFromUser})
    
-        if distance < 1000 {
-            print(distance/1000)
+        let closestLocation = locations.first
+        
+        if closestLocation!.distanceFromUser < 1000 {
             UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
                 self.fillImage.transform = CGAffineTransformMakeScale(CGFloat(distance/1000), CGFloat(distance/1000))
             }) { _ in }
