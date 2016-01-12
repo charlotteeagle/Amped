@@ -9,6 +9,7 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var locations = [CustomLocation]()
     
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var fillImage: UIImageView!
@@ -38,6 +39,35 @@ class MapViewController: UIViewController {
         mapView.setUserTrackingMode(.Follow, animated: true)
     }
     
+    func getBearingBetweenTwoPoints(x: CLLocationCoordinate2D, y: CLLocationCoordinate2D) -> CGFloat {
+        
+        let lat1 = degreesToRadians(x.latitude)
+        let lon1 = degreesToRadians(x.longitude)
+        
+        let lat2 = degreesToRadians(y.latitude);
+        let lon2 = degreesToRadians(y.longitude);
+        
+        let dLon = lon2 - lon1;
+        
+        let y = sin(dLon) * cos(lat2);
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+        var radiansBearing = atan2(y, x);
+        
+        if radiansBearing < 0.0 {
+            radiansBearing += CGFloat(2 * M_PI)
+        }
+        
+        return radiansToDegrees(Double(radiansBearing))
+    }
+    
+    func degreesToRadians(value:Double) -> CGFloat {
+        return CGFloat(value * M_PI / 180.0)
+    }
+    
+    func radiansToDegrees(radians: Double) -> CGFloat {
+        return CGFloat(radians * 180.0 / M_PI)
+    }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -54,6 +84,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
 
     }
+
 }
 
 
@@ -76,34 +107,18 @@ extension MapViewController: MKMapViewDelegate {
         
         if closestLocation!.distanceFromUser < 1000 {
             UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
-                self.fillImage.transform = CGAffineTransformMakeScale(CGFloat(distance/1000), CGFloat(distance/1000))
+                self.fillImage.transform = CGAffineTransformMakeScale(CGFloat(closestLocation!.distanceFromUser/1000), CGFloat(closestLocation!.distanceFromUser/1000))
+                
             }) { _ in }
         }
         
-        
-//        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { _ in
-//            
-//            if distance > 2000 {
-//                
-//            }
-//            if distance > 1500 {
-//                self.fillImage.transform = CGAffineTransformMakeScale(0.3, 0.3)
-//            }
-//            if distance > 1000 {
-//                self.fillImage.transform = CGAffineTransformMakeScale(0.5, 0.5)
-//            }
-//            if distance > 500 {
-//                self.fillImage.transform = CGAffineTransformMakeScale(0.8, 0.8)
-//            }
-//            if distance > 100 {
-//                self.fillImage.transform = CGAffineTransformMakeScale(1, 1)
-//            }
-//            
-//            }) { _ in
-//                
-//        }
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: { _ in
+            self.bgImage.transform = CGAffineTransformMakeRotation(self.getBearingBetweenTwoPoints(CLLocationCoordinate2D(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude), y: CLLocationCoordinate2D(latitude: closestLocation!.location.coordinate.latitude, longitude: closestLocation!.location.coordinate.longitude)))
+            }) { _ in }
+
         
     }
+    
     
 }
 
