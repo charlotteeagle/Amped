@@ -5,13 +5,6 @@
         "userName": "jasmine",
         "image": "crownIcon",
         "date": 111,
-        "color":1
+        "color":2
 	}
-	{
-		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "userName": "jasmine",
-        "image": "crownIcon",
-        "date": 111,
-        "color":1
-	}
-]
+	
