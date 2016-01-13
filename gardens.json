@@ -1,10 +1,38 @@
 [
 
 	{
-		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "userName": "Gardens",
+		"text": "Learning to surf can be one of the most fun, exciting and spiritual experiences of your life...it can also be the most painful, frustrating and annoying. Learning the basics right away is essential. I've been surfing for 8 years and will still ask for advice form surf instructors.",
+        "userName": "onyx808",
         "image": "crownIcon",
         "date": 111,
         "color": 1
+	}
+		{
+		"text": "Enjoy the many experiences surfing brings you: endless rainbows, your first board rash, having a turtle pop up next to you and screaming cause you think it's a shark, dawn patrol, a friendly smile from another surfer you've seen before, someone you don't know giving you props on a great wave, getting dropped in on for the first time, droppng in on someone else, surfing in the rain, surfing in the dark, countless reef cuts and learning to take pride in your hard earned reef scars, understanding what it really feels like to be 'stoked', seeing someone else catch a great wave...",
+        "userName": "onyx808",
+        "image": "crownIcon",
+        "date": 111,
+        "color": 3
+	}
+		{
+		"text": "I've started to realize that it isnt all about ME surfing - it's about watching others, learning patience and just enjoying being in the ocean.",
+        "userName": "onyx808",
+        "image": "crownIcon",
+        "date": 111,
+        "color": 2
+	}
+		{
+		"text": "Bournemouth Beach has fun, beach-breaks peaks with sandbars anchored by their pier. The East side is the most popular spot, with left handers heading back into the pier and faster rights leading down the beach. There are more peaks on the west side without the SW wind protection. On a solid SW groundswell and N wind there are decent barrels for the taking. There are also a number of sur schools on the beach, making Bournemouth Beach a perfect place for beginners.",
+        "userName": "Samantha Lambert",
+        "image": "crownIcon",
+        "date": 111,
+        "color": 1
+	}
+		{
+		"text": "Ocean safety is the most important thing in surfing. There are several factors that have to be taken into account when considering ocean safety: weather, the waves, currents, landscape features including rocks, cliffs and piers, other surfers, your board, your swimming ability and sea critters.",
+        "userName": "Surfing Handbook",
+        "image": "crownIcon",
+        "date": 111,
+        "color": 3
 	}
 ]
